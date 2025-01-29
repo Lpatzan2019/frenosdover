@@ -1,0 +1,1104 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesCrud.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <style>
+
+            .hidden {
+                display: none;
+            }
+            .visible {
+                display: block;
+            }
+            #result-table, #consulta-vehiculo {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            #result-table th, #result-table td,
+            #consulta-vehiculo th, #consulta-vehiculo td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            #result-table th, #consulta-vehiculo th {
+                background-color: #f2f2f2;
+            }
+
+
+
+            #tabla_modelo, #consulta-vehiculo, #tabla_stock {
+                width: 100%;
+                border-collapse: collapse;
+                text-align: center;
+            }
+            #tabla_modelo th, #tabla_modelo td,
+            #consulta-vehiculo th, #consulta-vehiculo td,
+            #tabla_stock th, #tabla_stock td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            #tabla_modelo th, #consulta-vehiculo th, #tabla_stock th {
+                background-color: #f2f2f2;
+            }
+
+            
+
+            /* INPUTS */ 
+            .input {
+            border-radius: 10px;
+            outline: 2px solid #FEBF00;
+            border: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #e9e9e9;
+            outline-offset: 3px;
+            padding: 10px 1rem;
+            transition: 0.25s;
+            width: 600px;
+            }
+
+            .input:focus {
+            outline-offset: 5px;
+            background-color: #fff
+            }
+
+
+            
+
+
+
+    #titulo-principal {
+        color: rgb(0, 0, 0); /* Texto en blanco */
+        font-weight: bold; /* Letras en negrita */
+        padding: 20px;
+        text-align: center;
+        font-size: 3vw;
+    }
+
+
+    #divPrincipal {
+    margin: 20px; /* Reduce el margen a 20px para todos los lados */
+    margin-top: 20px; /* Ajusta el margen superior para que sea menor */
+    margin-bottom: 100px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: calc(100vh - 60px);
+    box-sizing: border-box;
+}
+
+    .icon-right {
+    font-size: 36px; /* Ajusta el tamaño del ícono */
+    cursor: pointer; /* Cambia el cursor al pasar por el ícono */
+    color: #ffffff; /* Cambia el color del ícono */
+    padding-right: 2;
+}
+
+
+
+
+        </style>
+    </head>
+<body>
+
+
+    
+
+    <header class="fixed-header">
+        <div class="container-fluid d-flex justify-content-center align-items-center">
+            <h1 class="header-title">Frenos Dover</h1>
+            <a href="#" class="home-icon">
+                <i class="material-icons">home</i>
+            </a>
+            
+
+        </div>
+    </header>
+    
+
+
+    
+    
+    
+
+    <div id="divPrincipal" class="container-fluid d-flex justify-content-center align-items-center ">
+
+        
+    <div id="consulta-container" class="container mt-5 invoice-container hidden">
+        <br/>
+        <div class="table-title">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <h2>CONSULTA POR CODIGO DE PASTILLA</h2>
+                </div>
+                <!-- Nueva columna para el ícono de la casa -->
+                
+            </div>
+        </div>
+        
+            <br>
+        <label for="codigo-pastilla">Ingrese el código de la pastilla:</label>
+        <input type="text" id="codigo-pastilla" name="codigo-pastilla">
+        <button id="buscar">Buscar</button>
+        <table id="result-table" class="hidden table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID Pastilla</th>
+                    <th>Lado</th>
+                    <th>Dimensión</th>
+                </tr>
+            </thead>
+            <tbody id="result-body">
+                <!-- Resultados se llenarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+
+    
+
+    <div id="vehiculo-container" class="container mt-5 invoice-container hidden" >
+        <br/>
+        <div class="table-title">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <h2>CONSULTA POR VEHICULO</h2>
+                </div>
+                <!-- Nueva columna para el ícono de la casa -->
+                
+            </div>
+        </div>
+
+        <div class="form-container">
+            <label for="codigo-serie-modelo">Modelo:</label>
+            <input type="text" id="codigo-modelo" name="codigo-modelo">
+            
+            <label for="codigo-serie-marca">Modelo Pastilla:</label>
+            <input type="text" id="codigo-pastillita" name="codigo-pastillita">
+        </div>
+        <table id="tabla_modelo"  class="hidden table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID Detalle</th>
+                    <th>ID Pastilla</th>
+                    <th>Marca</th>
+                    <th>Detalle Serie Modelo</th>
+                </tr>
+            </thead>
+            <tbody id="vehiculo-body">
+                <!-- rellenaremos aqui con la data retornada -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+    <div id="stock_container" class="container mt-5 invoice-container hidden">
+            <br>
+            <div class="table-title">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <h2 >I N V E N T A R I O - <b>FRENOS DOVER</b></h2>
+                    </div>
+                    <!-- Nueva columna para el ícono de la casa -->
+                    
+                </div>
+            </div>
+
+        
+        <br/>   
+        <div class="input-container">
+            <label for="stok-label">Ingrese el modelo:</label>
+            <input type="text" id="stock-input" name="stock-input" placeholder="Write here..." class="input">
+        </div>
+        
+        
+        <button id="boton_buscar-stock" class="hidden">Buscar</button>
+
+        <br/>
+        <br/>
+        <br/>
+        <table id="tabla_stock"  class="hidden table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Codigo Pastilla</th>
+                    <th>Cantidad</th>
+                    <th>Costo</th>
+                    <th>Venta</th>
+                    <th>Codigo General</th>
+                </tr>
+            </thead>
+            <tbody id="stock-body">
+                <!-- rellenaremos aqui con la data retornada -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-------------------------------------------------------------------------------------------------------->
+
+ <!----------------------⇊⇊⇊⇊⇊⇊⇊⇊⇊C R U D ↑ ⇊⇊⇊⇊⇊⇊⇊----------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
+    <div id="crud_container" class="hidden custom-padding-margin invoice-container">
+        <div >
+            <div class="table-title">
+                <div class="row align-items-center">
+                    
+                    <div class="col-sm-6">
+						
+                        <br/>
+                        <input type="text" id="crud-input" name="crud-input" placeholder="Ingrese su busqueda..." class="input">
+                        
+                        
+					</div>
+                    
+                    
+					<div class="col-sm-6 text-right">
+                        <h2>Gestión de inventario <b>FRENOS DOVER</b></h2>
+                        
+                        
+						<a href="#addPastillaModal" class="btn btn-success" data-toggle="modal" id="botonAgregarNuevaPastilla"><i class="material-icons">&#xE147;</i> <span>Agregar Nueva Pastilla
+                        </span></a>
+                        
+						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Borrar</span></a>	
+                        <button id="exportar-stock" class="custom-btn btn-11">Exportar Stock a Excel</button>
+
+                        
+					</div>
+                    
+                </div>
+            </div>
+
+            <!-- -------------------------------------------------------------------------------- -->
+            <!-- -------------------------------------------------------------------------------- -->
+
+
+            <table id="tabla-crud" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+                        <th>Codigo Pastilla</th>
+                        <th>Cantidad</th>
+                        <th>Costo</th>
+                        <th>Venta</th>
+                        <th>Codigo Global</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="crud-body">
+                    
+                    
+                </tbody>
+            </table>
+
+
+            <!-- -------------------------------------------------------------------------------- -->
+            <!-- -------------------------------------------------------------------------------- -->
+
+
+			<div class="clearfix">
+                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+
+                    <!-- Incluye los estilos de Bootstrap y Bootstrap Icons -->
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+	<!-- add Modal HTML -->
+	<div id="addPastillaModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<div class="modal-header">						
+						<h4 class="modal-title">AGREGAR PRODUCTO NUEVO</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+                        <!-- RELLENAREMOS LA TABLA MFPASTILLA EN LA BASE DE DATOS-->
+                        <div class="form-group hidden" id="customBackgroundDiv">
+                            <label for="codigoGlobalPastilla">Codigo Global</label>
+                            <input type="text" class="form-control" id="codigoGlobalPastilla" name="codigoGlobalPastilla" placeholder="MF150" required maxlength="10">
+                            
+                            <label for="ladoPastilla">Lado Pastilla</label>
+                            <select class="form-control" id="ladoPastilla" name="ladoPastilla" required>
+                                <option value="" disabled selected>Seleccione una opción</option>
+                                <option value="FRONT/FRONTAL">FRONT/FRONTAL</option>
+                                <option value="REAR/TRASERA">REAR/TRASERA</option>
+                            </select>
+                            
+                            <label for="dimesinoPastilla">Dimensión Pastilla</label>
+                            <input type="text" class="form-control" id="dimesinoPastilla" name="dimesinoPastilla" placeholder="98 X 68 X 16 mm" required maxlength="35">
+                            <br/>
+                            <br/>
+                            <input id="AgregarCodigoGlobal" type="submit" class="btn btn-success" value="Agregar codigo Global">
+
+                        </div>
+                        
+                        <!-- RELLENAREMOS LA TABLA STOCK EN LA BD-->
+                        <div class="form-group" id="divAgregarStock">
+                            <label for="codigoPastillaStock">Código Pastilla</label>
+                            <input type="text" class="form-control" id="codigoPastillaStock" name="codigoPastillaStock" placeholder="MF150HP" required required maxlength="10">
+                        
+                            <label for="castindadPastillaStock">Cantidad</label>
+                            <input type="number" class="form-control" id="castindadPastillaStock" name="castindadPastillaStock" required min="0">
+                        
+                            <label for="costoPastilla">Costo</label>
+                            <input type="text" class="form-control" id="costoPastilla" name="costoPastilla" required>
+                        
+                            <label for="ventaPastilla">Venta</label>
+                            <input type="text" class="form-control" id="ventaPastilla" name="ventaPastilla" required>
+                            
+                            <label for="Id_pastilla">Código Pastilla Global</label>
+                            <select id="Id_pastilla" class="form-control" name="Id_pastilla" required>
+                                <option value="" disabled selected>Seleccione el código</option>
+                                <!-- Las opciones se cargarán dinámicamente -->
+                            </select>
+
+                        </div>
+                    </div>
+                    
+					<div class="modal-footer" id="pieAgregar">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="submit" id="btnAddStock" class="btn btn-success" value="Agregar A Stock">
+
+                        <br/>
+                        <br/>
+
+                        <label class="label-custom">Si no existe el codigo MF Global, presione el boton de abajo. </label>
+                        
+                        <button id="botonAgregarMFPastillaSiNoExiste" class="btn-17">
+                            <span class="text-container">
+                              <span class="text">Agregar Global</span>
+                            </span>
+                          </button>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Edit Modal HTML -->
+	<!-- Modal Editar Producto -->
+<div id="editProductoModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">						
+                    <h4 class="modal-title">EDITAR PRODUCTO</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                    <div class="form-group">
+                        <label>Codigo Pastilla</label>
+                        <label id="codigoPastillaLabel" name="codigoPastillaLabel" class="form-control"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Cantidad</label>
+                        <input type="number" class="form-control" name="cantidad" min="0" step="1" required >
+                    </div>
+                    <div class="form-group">
+                        <label>Costo</label>
+                        <input type="text" class="form-control" name="costo" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Venta</label>
+                        <input type="text" class="form-control" name="venta" required>
+                    </div>	
+                    <div class="form-group">
+                        <label>Codigo Global</label>
+                        <label id="codigoPastillaLabelGlobal" name="codigoPastillaLabelGlobal" class="form-control"></label>
+                    </div>				
+                </div>
+                
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-info" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+	<!-- Delete Modal HTML -->
+	<!-- Delete Modal HTML -->
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">				
+                <h4 class="modal-title">Eliminar Producto</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">				
+                <p>¿Estás seguro que deseas eliminar el producto con el código <span id="deleteCodigoPastilla"></span>?</p>
+                <p class="text-warning"><small>Esta acción no se puede deshacer.</small></p>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="deleteProductoId"> <!-- Este campo oculta almacenará el ID de la pastilla -->
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <!---------------------------------C R U D ↑ ↑↑↑↑↑↑↑----------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
+
+    
+
+ <!----------------------⇊⇊⇊⇊⇊⇊⇊⇊⇊C R U D  - DETALLE CONSULTA POR VEHICULO ⇊⇊⇊⇊⇊⇊⇊----------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
+
+<div id="crud_container_consulta_vehiculo" class="container mt-5 invoice-container hidden">
+        
+    <br/>
+    <div class="table-title">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <h2>Editar Modelo / Serie / Año</h2>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-end align-items-center">
+                <a href="#modalAddpastilla_detalle_serie_modelo" class="btn btn-success" data-toggle="modal" id="botonAgregarNuevaPastilla">
+                    <i class="material-icons">&#xE147;</i> 
+                    <span>Agregar Nuevo Registro</span>
+                </a>   
+            </div>
+        </div>
+    </div>
+    
+
+<div class="form-container">
+
+    
+    <label for="codigo-serie-marca">Modelo Pastilla:</label>
+    <input type="text" id="input-pastillaCodigo-crud" name="input-pastillaCodigo-crud">
+</div>
+<table id="tabla_modelo_crud"  class="hidden table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID Detalle</th>
+            <th>ID Pastilla</th>
+            <th>Marca</th>
+            <th>Detalle Serie Modelo</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="vehiculo-body-crud">
+        <!-- rellenaremos aqui con la data retornada -->
+    </tbody>
+</table>
+</div>
+
+
+<!--- MODAL PARA EDITAR LOS REGISTROS-->
+<div id="editarCrudBusquedaModelo" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">						
+                    <h4 class="modal-title">EDITAR PRODUCTO</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                    <div class="form-group">
+                        <label>ID Detalle</label>
+                        <label id="lableIdDetalleBusquedaCrud" name="lableIdDetalleBusquedaCrud" class="form-control"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>ID Pastilla</label>
+                        <label id="lableIdPastillaBusquedaCrud" name="lableIdPastillaBusquedaCrud" class="form-control"></label>
+                    </div>
+                    <label for="Id_pastilla">Marca</label>
+                    <select id="selectMarca" class="form-control" name="selectMarca" required>
+                        <option value="" disabled selected>Seleccione la marca</option>
+                        <!-- Las opciones se cargarán dinámicamente -->
+                    </select>
+                    <div class="form-group">
+                        <label>Detalle Serie Modelo</label>
+                        <input id="inputModalDetalleSerieModelo" type="text" class="form-control" name="venta" required>
+                    </div>	
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="actualizarVehiculoCrud">Actualizar</button>
+                    </div>	
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--------MODAL PARA ADD EL REGISTRO-->
+
+<div id="modalAddpastilla_detalle_serie_modelo" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="formAddModeloMarca"> <!-- ID aquí -->
+                <div class="modal-header">
+                    <h4 class="modal-title">AGREGAR NUEVO REGISTRO</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" id="divAgregarpastilla_detalle_serie_modelo"> 
+                        <div class="form-group">         
+                            <label for="Id_pastilla">Código Pastilla Global</label>
+                            <select id="GlobalPastillaModelo" class="form-control" name="GlobalPastillaModelo" required>
+                                <option value="" disabled selected>Seleccione el código</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Marca</label>
+                            <select id="selectMarcaModelo" class="form-control" name="sselectMarcaModelo" required>
+                                <option value="" disabled selected>Seleccione la marca</option>
+                            </select>
+                            <label>Detalle Serie Modelo</label>
+                            <input id="inputAddModelo" type="text" class="form-control" name="inputAddModelo" required maxlength="100">
+                        </div> 
+                    </div>
+                    <div class="modal-footer" id="MarcaModelo">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" id="btnAddModeloMarcarecord" class="btn btn-success" value="Agregar Registro">
+                    </div>    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+    <!---------------------------------C R U D ↑ ↑↑↑↑↑↑↑----------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
+
+
+
+<!---- ---------------------------------------------------------------------------------Facturas-->
+<!---- -------------------------------F A T U R A S -->
+<div id="facturacion-container" class="hidden container mt-5 invoice-container ">
+
+
+    <div class="table-title">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <h1>Ingreso de Factura</h1>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="d-flex align-items-center">
+            <label for="fechaFactura" class="me-2">Fecha de la Factura:</label>
+            <input type="date" id="fechaFactura" class="form-control" style="width: auto; flex: 0 0 auto;" />
+        </br>
+        </div>
+        
+        <div class="col-md-6 invoice-header mb-4">
+            <h2 class="gradient-title">Datos del Cliente</h2>
+            
+            <div class="form-group">
+            </br>
+                <label for="cliente_factura">Seleccione un cliente:</label>
+                <button id="btnAgregarCliente" class="btn btn-13 me-2">Agregar Cliente</button>
+
+            </br>    
+            </br>
+                <select class="form-control FacturaClassInputs" id="cliente_factura" required>
+                    <option value="">Seleccione un cliente</option>
+                    <!-- Los clientes se cargarán aquí dinámicamente -->
+                </select>
+                <label>Cliente:</label>
+                <div class="form-group">
+                    <input type="text" class="form-control FacturaClassInputs" id="cliente_input_factura" required>
+                </div>
+            </div>
+            
+            <div class="form-group"> 
+               
+                <input type="text" class="form-control FacturaClassInputs hidden" id="nit_factura" required>
+                <label for="nit_factura">NIT Cliente:</label>
+                <input type="text" class="form-control FacturaClassInputs" id="nit_factura_real" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion_factura">Dirección:</label>
+                <input type="text" class="form-control FacturaClassInputs" id="direccion_factura" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono_factura">Teléfono Cliente:</label>
+                <input type="text" class="form-control FacturaClassInputs" id="telefono_factura" required>
+            </div>
+        </div>
+
+        <div class="col-md-6 product-entry mb-4">
+            <h2 class="gradient-title">Agregar Producto</h2>
+
+            <div class="form-group">
+            </br>
+        </br>
+                <label for="id_producto_factura">ID Producto:</label>
+                <select class="form-control FacturaClassInputs" id="id_producto_factura" required>
+                    <option value="">Seleccione un producto</option>
+                    <!-- Los productos se cargarán aquí dinámicamente -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="descripcion_factura">Descripción:</label>
+                <select class="form-control FacturaClassInputs" id="descripcion_factura" required>
+                    <option value="">Seleccione un producto</option>
+                    <!-- Los productos se cargarán aquí dinámicamente -->
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control FacturaClassInputs hidden" id="id_descripcion" required step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="precio_factura">Precio:</label>
+                <input type="number" class="form-control FacturaClassInputs" id="precio_factura" required step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="cantidad_factura">Cantidad:</label>
+                <input type="number" class="form-control FacturaClassInputs" id="cantidad_factura" required min="1">
+            </div>
+            <button id="add-product" class="boton_factura">Agregar Producto</button>
+        </div>
+    </div>
+
+    <table id="invoice-table" class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID Producto</th>
+                <th>Id Descripción</th> <!-- Nueva columna -->
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Acciones</th> <!-- Nueva columna para acciones -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Productos se agregarán aquí -->
+        </tbody>
+    </table>
+    
+    <h2 class="gradient-title" id="totalito">Total: <span id="total">0.00</span></h2>
+    <br>
+    <button id="btnGuardarFactura" class="btn btn-13 me-2">Guardar Factura</button>
+    <button id="btnImprimirFactura" class="btn btn-13 me-2">Imprimir Factura</button>
+    
+</div>
+
+
+<!--  MODAL PARA AGREGAR CLIENTE NUEVO-->
+
+<div id="addClienteModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">						
+                    <h4 class="modal-title">AGREGAR NUEVO CLIENTE</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para ingresar datos del cliente -->
+                    <div class="form-group">
+                        <label for="nombreCliente">Nombre</label>
+                        <input type="text" class="form-control" id="nombreCliente" name="nombreCliente" placeholder="Nombre del Cliente" required maxlength="100">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="direccionCliente">Dirección</label>
+                        <input type="text" class="form-control" id="direccionCliente" name="direccionCliente" placeholder="Dirección del Cliente" maxlength="255">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefonoCliente">Teléfono</label>
+                        <input type="text" class="form-control" id="telefonoCliente" name="telefonoCliente" placeholder="Teléfono del Cliente" maxlength="20">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nitCliente">NIT</label>
+                        <input type="text" class="form-control" id="nitCliente" name="nitCliente" placeholder="NIT del Cliente" required maxlength="20">
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" id="btnAddCliente" class="btn btn-success" value="Agregar Cliente">
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="containerComprasProveedores" class="container mt-5 invoice-container hidden">
+    <h2 class="gradient-title">Registro de Compras</h2>
+
+    <!-- Sección para seleccionar el proveedor -->
+    <div class="form-section mb-4">
+        <h4>Seleccionar Proveedor</h4>
+        <form id="purchaseForm">
+            <div class="mb-3">
+                <label for="proveedor" class="form-label">Proveedor</label>
+                <select id="selectproveedor" class="form-select">
+                    <option value="">Seleccione un proveedor</option>
+                    <!-- Opciones de proveedores -->
+                </select>
+
+                <button type="button" id="btnabrirmodalProveedor" class="btn btn-13 me-2">Agregar Proveedor</button>
+
+
+                
+                <input type="hidden" class="form-control FacturaClassInputs" id="idProveedor"  placeholder="idProveedor">
+                <input type="hidden" class="form-control FacturaClassInputs" id="nomProveedor" >
+            </div>
+            <div class="mb-3 row">
+                <div class="col-md-6">
+                    <label for="fecha_compra" class="form-label">Fecha de Compra</label>
+                    <input type="date" id="fecha_compra" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="num-factura" class="form-label">Número Factura</label>
+                    <input type="text" class="form-control FacturaClassInputs" id="num-factura"  required placeholder="Número de Factura">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="total" class="form-label">Total</label>
+                <input type="number" id="totalCompra" required class="form-control" step="0.01"  placeholder="Total de la Compra">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary" id="btnRegistrarCompra">Registrar Compra</button>
+        </form>
+    </div>
+
+    <!-- Sección para agregar detalles de la compra -->
+    <div class="form-section mb-4">
+        <h4>Agregar Detalles de la Compra</h4>
+        <div id="detallesContainer">
+            <div class="detalle-item mb-3">
+                <label for="pastilla_venta" class="form-label ">Id Producto</label>
+                <select id="selectProducto" class="form-select producto-select" >
+                    <option value="">Seleccione un producto</option>
+                    <!-- Opciones de productos -->
+                </select>
+                <br>
+                <div class="mb-3 row">
+                    <div class="col-md-6">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                        <input id="cantidadCompra" type="number" class="form-control cantidad"  placeholder="Cantidad">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="precio_costo" required  class="form-label">Precio Costo</label>
+                        <input id="costoCompra" type="number" class="form-control precio_costo" step="0.01"  placeholder="Precio Costo">   
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-danger mt-2 remove-detail hidden">Eliminar</button>
+            <button class="btn btn-success" id="addDetail">Agregar Detalle</button>
+            <button class="btn btn-success" id="nuevaFactura">Nueva Factura</button>
+        </div>
+
+        <!-- Tabla para mostrar los detalles de las compras -->
+        <table id="tablaCompras" class="table table-striped table-hover mt-4">
+            <thead class="table-light">
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio Costo</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="detallesTableBody">
+                <!-- Los detalles de la compra se agregarán aquí -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal para agregar nuevo proveedor -->
+<div id="addProveedorModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="formAddProveedor">
+                <div class="modal-header">						
+                    <h4 class="modal-title">AGREGAR NUEVO PROVEEDOR</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nombreProveedor">Nombre Proveedor</label>
+                        <input type="text" class="form-control" id="nombreProveedor" name="nombreProveedor" placeholder="Nombre del Proveedor" required maxlength="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefonoProveedor">Teléfono</label>
+                        <input type="text" class="form-control" id="telefonoProveedor" name="telefonoProveedor" placeholder="Teléfono del proveedor" maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono2Proveedor">Teléfono 2 (en caso tenga)</label>
+                        <input type="text" class="form-control" id="telefono2Proveedor" name="telefono2Proveedor" placeholder="Teléfono del proveedor" maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccionProveedor">Dirección</label>
+                        <input type="text" class="form-control" id="direccionProveedor" name="direccionProveedor" placeholder="Dirección del Proveedor" required maxlength="255">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" id="btnAddProveedor" class="btn btn-success" value="Agregar Proveedor">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Getions de CLIENTES -->
+
+
+
+    
+
+
+<div id="containerClientes" class="container mt-5 invoice-container hidden">
+    <h2 class="gradient-title">Gestión de Clientes</h2>
+
+    <!-- Sección para seleccionar y gestionar clientes -->
+    <div class="form-section mb-4">
+        <br>
+        <form id="clientForm">
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label for="selectCliente" class="form-label">Seleccionar Cliente</label>
+                    <select id="selectCliente" class="form-select" style="width: 100%;">
+                        <option value="">Seleccione un cliente</option>
+                        <!-- Las opciones de clientes se cargarán aquí -->
+                    </select>
+                    
+                </div>
+                <br>
+                <button type="button" id="btnabrirmodalCliente" class="btn btn-13 me-2">Agregar Cliente</button>
+                
+                <button type="button" id="btnEditarCliente" class="btn btn-13 me-2">Editar Cliente</button>
+                
+                <input type="hidden" class="form-control FacturaClassInputs" id="idCliente" placeholder="ID Cliente">
+            </div>
+        </form>
+        <br>
+    </div>
+
+    <!-- Tabla para mostrar la lista de clientes -->
+    <table id="tablaClientes" class="table table-striped table-hover mt-4">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>NIT</th>
+            </tr>
+        </thead>
+        <tbody id="clientesTableBody">
+            <!-- Los clientes se agregarán aquí -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal para agregar o editar cliente -->
+<!-- Modal para agregar nuevo cliente -->
+<!-- Modal para editar cliente -->
+<!-- Modal para editar cliente -->
+
+<div class="modal fade" id="modalEditarCliente" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Editar Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarCliente">
+                    <div class="form-group">
+                        <label for="ClienteEditable">ID</label>
+                        <input type="text" id="idClienteEditable" class="form-control" placeholder="Id Cliente" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombreClienteEditable">Nombre</label>
+                        <input type="text" id="nombreClienteEditable" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccionClienteEditable" class="form-control" placeholder="Dirección">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" id="telefonoClienteEditable" class="form-control" placeholder="Teléfono">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Nit</label>
+                        <input type="email" id="nitClienteEditable" class="form-control" placeholder="Email">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarCambios">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>  
+</div>
+
+
+
+
+
+<!-- nuevo dashboard --> 
+
+
+<!-- purueba div--> 
+<div id="dashboardd" class="container ">
+    <div class="dashboard">
+        <h2>Panel de Control</h2>
+        <div class="dashboard-grid">
+
+            <div class="dashboard-item" id="consulta-pastilla">
+                <i class="fa-solid fa-compact-disc"></i>    
+                <h3>Dimensiones Pastilla</h3>
+            </div>
+            <div class="dashboard-item" id="consulta-vehiculo">
+                <i class="fa-solid fa-car-side"></i>
+                <h3>Consulta Por Vehiculos</h3>
+            </div>
+            <div class="dashboard-item" id="consulta-stock">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <h3>Consulta de precios</h3>
+            </div>
+            <div class="dashboard-item" id="nav-Facturas">
+                <i class="fa-regular fa-file-lines"></i>
+                <h3>Registro Ventas/Cotizaciones</h3>
+            </div>
+            <div class="dashboard-item" id="gestion-inventario">
+                <i class="fa-solid fa-warehouse"></i>
+                <h3>Gestión Inventario</h3>
+            </div>
+            <div class="dashboard-item" id="Gestion-Detalle-Pastilla">
+                <i class="fa-solid fa-circle-info"></i>
+                <h3>Gestión Detalle Pastilla</h3>
+            </div>
+            <div class="dashboard-item" id="Proveedores">
+                <i class="fa-solid fa-truck"></i>
+                <h3>Compras A Proveedores</h3>
+            </div>
+            <div class="dashboard-item" id="gestion-clientes">
+                <i class="fa-solid fa-user-plus"></i>
+                <h3>Gestión Clientes</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- purueba div-->
+
+
+
+
+
+
+
+
+
+
+
+<!-- nuevo dashboard --> 
+</div>  
+<footer class="fixed-footer">
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+        <p class="footer-text">© 2024 Frenos Dover. Todos los derechos reservados.</p>
+        
+    </div>
+</footer>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>
